@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if operation == 'create' %}Добавить товар{% else %}Редактировать товар: {{ product.name }}{% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>{% if operation == 'create' %}Добавить новый товар{% else %}Редактировать {{ product.name }}{% endif %}</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="{% if operation == 'create' %}Добавить{% else %}Обновить{% endif %}">
+    </form>
+{% endblock %} 

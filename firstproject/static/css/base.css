@@ -1,0 +1,844 @@
+/* Universal box-sizing for consistent layout */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    outline: none; /* Reset outlines for all elements */
+    border: none; /* Reset borders for all elements */
+}
+
+/* Basic resets for margins and paddings to remove potential red border */
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: #a0522d;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #8b4513;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin: 20px 0 10px 0;
+    color: #333;
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
+
+#header {
+    padding: 15px 40px;
+    background-color: #556b2f;
+    color: #fff;
+    overflow: auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+#header .logo {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    float: left;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#subheader {
+    background-color: #6b8e23;
+    color: #fff;
+    padding: 10px 40px;
+    overflow: auto;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+#subheader .cart {
+    float: right;
+    color: #fff;
+    padding-top: 5px;
+    font-size: 1.1em;
+}
+
+#subheader .cart a {
+    color: #fff;
+    text-decoration: underline;
+    margin-left: 5px;
+}
+
+#subheader .cart a:hover {
+    color: #ffdead;
+}
+
+#content {
+    padding: 30px 40px;
+    overflow: auto;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#sidebar {
+    width: 250px;
+    padding-right: 30px;
+    border-right: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+#sidebar h3 {
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #556b2f;
+}
+
+#sidebar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#sidebar ul li {
+    margin: 0;
+    padding: 0;
+}
+
+#sidebar ul li a {
+    display: block;
+    padding: 12px 0;
+    font-size: 1.1em;
+    color: #555;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+#sidebar ul li a:hover {
+    background-color: #f5f5f5;
+    padding-left: 5px;
+    color: #a0522d;
+}
+
+#sidebar ul li.selected a {
+    color: #a0522d;
+    font-weight: bold;
+}
+
+.product-list {
+    flex-grow: 1;
+    padding-left: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.product-list h1 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #556b2f;
+}
+
+.product-create-button-container {
+    grid-column: 1 / -1;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.product-list .item {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    padding-bottom: 15px;
+}
+
+.product-list .item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.product-list .item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-list .item a {
+    font-size: 1.2em;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    color: #333;
+}
+
+.product-list .item a:hover {
+    color: #a0522d;
+}
+
+.product-list .item .price {
+    color: #a0522d;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.product-detail {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+.product-detail img {
+    max-width: 450px;
+    height: auto;
+    border: 1px solid #eee;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.product-detail .info {
+    flex: 1;
+    min-width: 300px;
+    text-align: left;
+}
+
+.product-detail h1 {
+    margin-top: 0;
+    font-size: 2.8em;
+    color: #556b2f;
+}
+
+.product-detail h2 {
+    font-size: 1.3em;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.product-detail .price {
+    color: #a0522d;
+    font-size: 2.2em;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.product-detail p {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+/* Styles for product form */
+.product-detail .info form {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.product-detail .info form input[type="number"] {
+    width: 80px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.product-detail .info form input[type="submit"] {
+    background-color: #a0522d;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    width: auto;
+}
+
+.product-detail .info form input[type="submit"]:hover {
+    background-color: #8b4513;
+}
+
+.product-detail .info form .button {
+    margin-top: 0;
+    display: inline-block;
+    width: auto;
+}
+
+.product-detail .info form .button.light {
+    margin-left: 10px;
+}
+
+.product-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.product-interaction-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+table.cart {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table.cart th,
+table.cart td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+table.cart thead th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    color: #555;
+}
+
+table.cart tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+table.cart tbody td:first-child { text-align: left; }
+table.cart tbody td:nth-child(2) { text-align: left; }
+table.cart tbody td:last-child { text-align: right; }
+
+
+table.cart tbody td img {
+    width: 100px;
+    height: auto;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+table.cart .total {
+    font-weight: bold;
+    background-color: #f9f9f9;
+}
+
+.product-list .item .price {
+    color: #a0522d;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+table.cart .num {
+    text-align: right;
+    font-size: 1.2em;
+    color: #a0522d;
+}
+
+table.cart .total td {
+    border-top: 2px solid #ccc;
+}
+
+.text-right {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #556b2f;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #6b8e23;
+}
+
+.button.light {
+    background-color: #ccc;
+    color: #333;
+}
+
+.button.light:hover {
+    background-color: #bbb;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* New styles for account info and forms */
+.account-info {
+    float: right;
+    color: #fff;
+    padding-top: 5px;
+    font-size: 1.1em;
+}
+
+.account-info a {
+    color: #fff;
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+.account-info a:hover {
+    color: #ffdead;
+}
+
+.login-form, .registration-form {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.login-form h1, .registration-form h1 {
+    text-align: center;
+    color: #556b2f;
+    margin-bottom: 25px;
+}
+
+.login-form p, .registration-form p {
+    margin-bottom: 15px; /* Spacing between form rows */
+    display: flex;
+    flex-wrap: wrap; /* Allow elements to wrap to next line */
+    align-items: flex-start; /* Vertically align items to the start of the cross-axis */
+    line-height: 1.6; /* Ensure line height for text elements */
+}
+
+.login-form label, .registration-form label {
+    flex: 0 0 150px; /* Fixed width for labels, prevent shrinking/growing */
+    text-align: right;
+    padding-right: 15px; /* Space between label and input */
+    box-sizing: border-box; /* Include padding in flex-basis width */
+    margin-bottom: 0; /* Reset margin */
+    display: block; /* Ensure it's a block for text-align */
+    color: #555;
+    font-weight: bold;
+    padding-top: 12px; /* Align label with input padding */
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"],
+.login-form input[type="email"],
+.registration-form input[type="text"],
+.registration-form input[type="password"],
+.registration-form input[type="email"] {
+    flex: 1 1 auto; /* Allow input to grow and shrink, but maintain auto width */
+    min-width: 200px; /* Ensure inputs don't get too small */
+    padding: 12px;
+    margin-bottom: 0; /* Reset margin */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Styles for validation errors and help text within forms */
+/* These assume they are direct children or wrapped in a div/span within the <p> */
+.login-form .helptext, .registration-form .helptext,
+.login-form ul.errorlist, .registration-form ul.errorlist {
+    flex-basis: 100%; /* Make them take full width in the flex container */
+    order: 1; /* Ensure they appear after label and input within the flex row */
+    margin-left: 165px; /* Push to align with input field start (label width + label padding) */
+    width: calc(100% - 165px); /* Take remaining width */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #666;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.login-form ul.errorlist, .registration-form ul.errorlist {
+    color: #dc3545; /* Red for errors */
+    list-style-type: disc; /* Bullet points for error lists */
+    padding-left: 15px; /* Indent for bullet points */
+    margin-top: 0; /* Remove extra top margin */
+    margin-bottom: 15px; /* Space after error list */
+}
+
+.login-form ul.errorlist li, .registration-form ul.errorlist li {
+    margin-bottom: 5px; /* Space between list items */
+}
+
+
+/* Adjust submit button */
+.login-form input[type="submit"],
+.registration-form input[type="submit"] {
+    margin-top: 25px; /* Space above the button */
+    display: block; /* Keep it block to take full width of its container */
+    width: 100%;
+    max-width: 500px; /* Limit width to form width */
+    margin-left: auto; /* Center the block element */
+    margin-right: auto;
+}
+
+.login-form p a, .registration-form p a {
+    color: #a0522d;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    #header, #subheader, #content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #sidebar {
+        width: 100%;
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 20px;
+    }
+
+    #sidebar ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #sidebar ul li {
+        margin-bottom: 0;
+    }
+
+    #sidebar ul li a {
+        border-bottom: none;
+        padding: 5px 10px;
+    }
+
+    .product-list {
+        margin-left: 0;
+        padding-left: 0;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        justify-content: center;
+    }
+
+    .product-list .item {
+        width: auto;
+        margin: 0;
+    }
+
+    .product-detail {
+        flex-direction: column;
+        align-items: center;
+        padding-left: 0;
+    }
+
+    .product-detail img {
+        float: none;
+        margin: 0 0 20px 0;
+    }
+
+    .product-detail .info {
+        text-align: center;
+        min-width: unset;
+    }
+
+    .product-detail .info form, .product-actions {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .product-detail .info form input[type="submit"] {
+        width: 100%;
+    }
+
+    table.cart th,
+    table.cart td {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    table.cart tbody td img {
+        width: 60px;
+    }
+
+    .login-form p, .registration-form p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px; /* Reintroduce gap for stacked items */
+    }
+
+    .login-form label, .registration-form label {
+        flex-basis: auto;
+        text-align: left;
+        padding-right: 0;
+        padding-top: 0;
+    }
+
+    .login-form input[type="text"],
+    .login-form input[type="password"],
+    .login-form input[type="email"],
+    .registration-form input[type="text"],
+    .registration-form input[type="password"],
+    .registration-form input[type="email"] {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .login-form .helptext, .registration-form .helptext,
+    .login-form ul.errorlist, .registration-form ul.errorlist {
+        margin-left: 0;
+        width: 100%;
+        padding-left: 0; /* No explicit padding for bullets, rely on list-style-position */
+    }
+
+    .login-form ul.errorlist, .registration-form ul.errorlist {
+        list-style-position: inside;
+        padding-left: 20px; /* Small indent for mobile with bullets */
+    }
+
+    .product-interaction-container {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #header .logo {
+        font-size: 22px;
+    }
+
+    #subheader .cart {
+        font-size: 0.9em;
+    }
+
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.5em; }
+
+    .product-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* New styles for confirmation forms */
+.confirmation-form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.confirmation-form h1 {
+    color: #556b2f;
+    margin-bottom: 20px;
+}
+
+.confirmation-form p {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+}
+
+.confirmation-form form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.confirmation-form input[type="submit"] {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.confirmation-form input[type="submit"]:hover {
+    background-color: #c82333;
+}
+
+.confirmation-form a.button.light {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.confirmation-form a.button.light:hover {
+    background-color: #5a6268;
+}
+
+.registration-form .form-group {
+    display: flex;
+    align-items: flex-start; /* Align items to the top of the flex line */
+    margin-bottom: 15px; /* Space between form groups */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.registration-form label {
+    flex: 0 0 150px; /* Fixed width for labels */
+    text-align: right;
+    padding-right: 15px;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    display: block;
+    color: #555;
+    font-weight: bold;
+    padding-top: 12px; /* Align label with input padding */
+}
+
+.registration-form input[type="text"],
+.registration-form input[type="password"],
+.registration-form input[type="email"] {
+    flex: 1 1 auto; /* Allow input to grow and shrink */
+    min-width: 200px;
+    padding: 12px;
+    margin-bottom: 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.registration-form .helptext,
+.registration-form ul.errorlist {
+    flex-basis: 100%; /* Take full width */
+    order: 1; /* Position below label/input */
+    margin-left: 165px; /* Indent to align with input */
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #666;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.registration-form ul.errorlist {
+    color: #dc3545;
+    list-style-type: disc;
+    padding-left: 15px; /* Indent for bullet points */
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.registration-form ul.errorlist li {
+    margin-bottom: 5px;
+}
+
+.registration-form p:last-of-type {
+    /* This targets the <p> tag that contains the submit button */
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    width: 100%;
+}
+
+.registration-form input[type="submit"] {
+    background-color: #a0522d;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    /* Remove previous block-level centering if it interferes */
+    display: inline-block; /* Ensure it respects parent flex centering */
+    width: auto; /* Allow content to dictate width */
+    max-width: none; /* Override any max-width */
+}
+
+.registration-form input[type="submit"]:hover {
+    background-color: #8b4513;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .registration-form label {
+        flex-basis: auto;
+        text-align: left;
+        padding-right: 0;
+        padding-top: 0;
+    }
+
+    .registration-form input[type="text"],
+    .registration-form input[type="password"],
+    .registration-form input[type="email"] {
+        min-width: unset;
+        width: 100%;
+    }
+
+    .registration-form .helptext,
+    .registration-form ul.errorlist {
+        margin-left: 0;
+        width: 100%;
+        padding-left: 0; /* Remove explicit padding for bullets on mobile */
+    }
+
+    .registration-form ul.errorlist {
+        list-style-position: inside;
+        padding-left: 20px; /* Small indent for mobile with bullets */
+    }
+
+    .registration-form .form-group {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align stacked items to the left */
+        gap: 5px; /* Small gap between stacked items */
+    }
+}

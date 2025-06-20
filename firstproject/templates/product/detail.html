@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="product-detail">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <h2><a href="{{ product.category.get_absolute_url }}">{{ product.category }}</a></h2>
+            <p class="price">₽{{ product.price }}</p>
+            {{ product.description|linebreaks }}
+
+            <div class="product-interaction-container">
+                <form action="{% url "cart:cart_add" product.id %}" method="post">
+                    {{ cart_product_form }}
+                    {% csrf_token %}
+                    <input type="submit" value="Добавить в корзину">
+                </form>
+                {% if request.user.is_superuser %}
+                    <div class="product-actions">
+                        <a href="{% url 'firstproject:product_update' product.id product.slug %}" class="button">Редактировать</a>
+                        <a href="{% url 'firstproject:product_delete' product.id product.slug %}" class="button light">Удалить</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %} 

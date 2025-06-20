@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Магазин специй Дурман{% endblock %}</title>
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <a href="/" class="logo">Магазин специй Дурман</a>
+        <div class="account-info">
+            {% if request.user.is_authenticated %}
+                Привет, {{ request.user.username }}!
+                <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; color:#fff; text-decoration:underline; cursor:pointer; font-size:1.1em; margin-left:10px;">Выйти</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Войти</a> |
+                <a href="{% url 'firstproject:register' %}">Зарегистрироваться</a>
+            {% endif %}
+        </div>
+    </div>
+    <div id="subheader">
+        <div class="cart">
+            {% with total_items=cart|length %}
+                {% if total_items > 0 %}
+                    Ваша корзина:
+                    <a href="{% url "cart:cart_detail" %}">
+                        {{ total_items }} товар{{ total_items|pluralize }} на сумму ₽{{ cart.get_total_price }}
+                    </a>
+                {% else %}
+                    Ваша корзина пуста.
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Магазин специй Дурман. Все права защищены.</p>
+    </footer>
+</body>
+</html> 

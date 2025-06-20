@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Удалить товар: {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    <div class="confirmation-form">
+        <h1>Удалить товар: {{ product.name }}</h1>
+        <p>Вы уверены, что хотите удалить "{{ product.name }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="submit" value="Удалить">
+            <a href="{% url 'firstproject:product_detail' product.id product.slug %}" class="button light">Отмена</a>
+        </form>
+    </div>
+{% endblock %} 
